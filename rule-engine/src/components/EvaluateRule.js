@@ -8,16 +8,16 @@ const EvaluateRule = ({ astId }) => {
     experience: '',
   });
 
-  const [results, setResults] = useState("");
+  const [results, setResults] = useState(false);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setData((prevData) => ({...prevData, [name]: value }));
+    setResults(false)
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Data:', data);
     handleEvaluate();
   };
 
@@ -30,8 +30,7 @@ const EvaluateRule = ({ astId }) => {
     })
      .then((response) => response.json())
      .then((data) => {
-        console.log(data);
-        setResults(data);
+        setResults(data.result);
         setData({
           age: '',
           department: '',
@@ -99,7 +98,7 @@ const EvaluateRule = ({ astId }) => {
       </div>
       <div className="w-1/3 p-8 bg-white rounded-lg shadow-md mx-4 pl-4 border-l-2 border-gray-300">
         <h2 className="text-2xl text-gray-700 mb-4">Result:</h2>
-        <p className="text-3xl text-gray-700 font-bold">{results? 'True' : 'False'}</p>
+        <p className="text-3xl text-gray-700 font-bold">{results===true? 'True' : 'False'}</p>
       </div>
     </div>
   );
