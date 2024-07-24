@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const RuleInput = ({ onCreateRule,error}) => {
+const RuleInput = ({ onCreateRule,error,setError}) => {
   const [ruleString, setRuleString] = useState('');
 
   const handleSubmit = async (e) => {
@@ -8,6 +8,8 @@ const RuleInput = ({ onCreateRule,error}) => {
     try {
       await onCreateRule(ruleString);
       setRuleString('');
+      setError('');
+      
     } catch (error) {
     }
   };

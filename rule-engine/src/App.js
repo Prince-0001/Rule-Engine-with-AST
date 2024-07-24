@@ -12,7 +12,7 @@ const App = () => {
   const [combineError, setCombineError]=useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8800/api/rules/getAll')
+    axios.get('https://rule-engine-with-ast.onrender.com/api/rules/getAll')
       .then(response => {
         setRules(response.data);
       })
@@ -22,7 +22,7 @@ const App = () => {
   }, []);
 
   const handleCreateRule = (newRule) => {
-    axios.post('http://localhost:8800/api/rules/create', { ruleString: newRule })
+    axios.post('https://rule-engine-with-ast.onrender.com/api/rules/create', { ruleString: newRule })
       .then(response => {
         setRules([...rules, response.data.rule]);
       })
@@ -33,16 +33,17 @@ const App = () => {
   };
 
   const handleCombineRule =(combinedRulesArray)=>{
-    axios.post('http://localhost:8800/api/rules/combine',combinedRulesArray)
+    axios.post('https://rule-engine-with-ast.onrender.com/api/rules/combine',combinedRulesArray)
     .then(response=>{
       setRules([...rules,response.data.rule]);
+      setCombineError("");
     })
     .catch(err=>{
       setCombineError(err.response.data.message);
     })
   }
   const handleDeleteRule = (ruleId) => {
-    axios.delete(`http://localhost:8800/api/rules/${ruleId}`)
+    axios.delete(`https://rule-engine-with-ast.onrender.com/api/rules/${ruleId}`)
       .then(response => {
         setRules(rules.filter(rule => rule._id !== ruleId));
       })
@@ -62,7 +63,7 @@ const App = () => {
       <div className='flex items-center justify-center m-2'>
         <h1 className="text-3xl font-bold mb-4 flex">Rule Engine with AST</h1>
       </div>
-      <RuleInput onCreateRule={handleCreateRule} error={inputError} />
+      <RuleInput onCreateRule={handleCreateRule} error={inputError} setError={setInputError}/>
       <CombineRule onCombineRule={handleCombineRule} error={combineError}></CombineRule>
       <EvaluateRule  astId={astId}></EvaluateRule>
       <RuleList rules={rules} onDeleteRule={handleDeleteRule} onSelectRule={handleSelectRule} />

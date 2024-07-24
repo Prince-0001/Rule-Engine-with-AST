@@ -23,6 +23,7 @@ const CombineRule = ({ onCombineRule ,error}) => {
     const combinedRuleArray = ruleStrings.map((rule) => rule.value);
     setCombinedRule(combinedRuleArray);
     onCombineRule(combinedRuleArray);
+    
   };
 
   return (
