@@ -23,7 +23,7 @@ const EvaluateRule = ({ astId }) => {
 
   const handleEvaluate = () => {
     // Call API to evaluate rule
-    fetch('http://localhost:8800/api/rules/evaluate', {
+    fetch('https://rule-engine-with-ast.onrender.com/api/rules/evaluate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ astId, data }),
