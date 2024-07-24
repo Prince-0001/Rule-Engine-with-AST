@@ -26,7 +26,7 @@ const EvaluateRule = ({ astId }) => {
     fetch('https://rule-engine-with-ast.onrender.com/api/rules/evaluate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ astId, data }),
+      body: JSON.stringify({astId, data }),
     })
      .then((response) => response.json())
      .then((data) => {
@@ -38,7 +38,6 @@ const EvaluateRule = ({ astId }) => {
           salary: '',
           experience: '',
         });
-        setResults("")
       })
      .catch((error) => console.error(error));
   };

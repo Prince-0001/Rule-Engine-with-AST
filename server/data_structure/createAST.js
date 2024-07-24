@@ -47,8 +47,7 @@ export default function createAST(ruleString) {
   
     for (let i = 0; i < tokens.length; i++) {
       const token = tokens[i];
-  
-      if (token === '(') {
+       if (token === '(') {
         operators.push(token);
       } else if (token === ')') {
         while (operators[operators.length - 1] !== '(') {

@@ -30,3 +30,4 @@ function evaluateRule(ast, data) {
   }
 
   export default evaluateRule;
+  

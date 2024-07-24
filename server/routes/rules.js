@@ -8,7 +8,9 @@ const router = express.Router();
 
 router.post('/create', async (req, res) => {
   try {
-    const ruleString = req.body.ruleString;
+    let ruleString = req.body.ruleString.toString();
+    ruleString=ruleString.trim();
+    ruleString = ruleString.replace(/^[\/\\`"]+|[\/\\`"]+$/g, '');
     if (!ruleString || ruleString.trim() === '') {
       return res.status(400).send({ message: 'Rule string is required' });
     }
@@ -20,6 +22,7 @@ router.post('/create', async (req, res) => {
     await rule.save();
     res.status(201).send({ rule });
   } catch (error) {
+    console.log(error);
     res.status(500).send({ message: 'Error creating rule' });
   }
 });
@@ -38,7 +41,6 @@ router.post('/combine', async (req, res) => {
     await rule.save(rule);
     res.status(200).send({ rule });
   } catch (error) {
-    console.error(error);
     res.status(500).send({ message: 'Error combining rules' });
   }
 });
@@ -60,8 +62,7 @@ router.post('/evaluate', async (req, res) => {
     }
     res.status(200).send({ result });
   } catch (error) {
-    console.error(error);
-    res.status(500).send({ message: 'Error evaluating rule' });
+    res.status(500).send({ message: 'Error evaluating rule',error });
   }
 });
 
@@ -70,7 +71,6 @@ router.get("/getAll", async (req, res) => {
     const rules = await Rule.find().exec();
     res.status(200).json(rules.map(rule => rule.toJSON()));
   } catch (err) {
-    console.log(err);
     res.status(500).json(err);
   }
 });
