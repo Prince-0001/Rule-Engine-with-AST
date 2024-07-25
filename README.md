@@ -11,18 +11,6 @@ A simple 3-tier rule engine application to determine user eligibility based on a
 **Server:** Node, Express
 
 
-## Getting Started
-
-To get started with the website, simply navigate to the homepage and select a rule to evaluate. Then, input the required data in the evaluation form and click the "Evaluate" button to see the result.
-
-```bash
-  step1 : Add one Rule or Add Combine multiple Rules
-
-  step 2: Select the one Rule
-
-  Step 3: Enter the data and Evaluate
-```
-
 
 ## Run Locally
 
@@ -116,6 +104,22 @@ To run this project, you will need to add the following environment variables to
 `right: A reference to another rule or a value.`
 
 `value: A string representing the value of the node.`
+
+
+
+## Getting Started
+
+To get started with the website, simply navigate to the homepage and select a rule to evaluate. Then, input the required data in the evaluation form and click the "Evaluate" button to see the result.
+
+```bash
+  step1 : Add one Rule or Add Combine multiple Rules
+
+  step 2: Select the one Rule
+
+  Step 3: Enter the data and Evaluate
+```
+
+
 
 ## 🔗 Depoly -Links
 `Frontend` (https://rule-engine-with-ast.vercel.app)
